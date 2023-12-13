@@ -9,8 +9,16 @@ import {
 import Logo from '../../assets/Logo.svg';
 import Plus from '../../assets/plus.svg';
 import {useHomeHook} from './useHomeHook';
+import {Check} from '../../components/check';
 export function Home() {
-  const {todo, setTodo, handleCreatedTodo, listTodo} = useHomeHook();
+  const {
+    todo,
+    setTodo,
+    handleCreatedTodo,
+    listTodo,
+    handleCompletedTask,
+    counterTodoCompleted,
+  } = useHomeHook();
 
   return (
     <View style={styles.container}>
@@ -39,15 +47,21 @@ export function Home() {
 
         <View style={styles.wrapperCounter}>
           <Text style={styles.textFinish}>Concluídas</Text>
-          <Text style={styles.counterTodo}>{listTodo.length}</Text>
+          <Text style={styles.counterTodo}>{counterTodoCompleted}</Text>
         </View>
       </View>
 
       <View>
-        {listTodo.map((t, index) => (
-          <Text style={styles.textTodo} key={index}>
-            {t.title}
-          </Text>
+        {listTodo.map(todo => (
+          <View style={styles.wrapperCounter}>
+            <Check
+              isChecked={todo.completed}
+              onPress={() => handleCompletedTask(todo.id)}
+            />
+            <Text style={styles.textTodo} key={todo.id}>
+              {todo.title}
+            </Text>
+          </View>
         ))}
       </View>
     </View>
