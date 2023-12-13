@@ -32,8 +32,15 @@ export function Home() {
       </View>
 
       <View style={styles.wrapperText}>
-        <Text style={styles.textCreate}>Criadas</Text>
-        <Text style={styles.textFinish}>Concluídas</Text>
+        <View style={styles.wrapperCounter}>
+          <Text style={styles.textCreate}>Criadas</Text>
+          <Text style={styles.counterTodo}>{listTodo.length}</Text>
+        </View>
+
+        <View style={styles.wrapperCounter}>
+          <Text style={styles.textFinish}>Concluídas</Text>
+          <Text style={styles.counterTodo}>{listTodo.length}</Text>
+        </View>
       </View>
 
       <View>
@@ -103,6 +110,21 @@ const styles = StyleSheet.create({
     color: '#4EA8DE',
     fontSize: 14,
     fontWeight: '700',
+  },
+
+  wrapperCounter: {
+    // marginTop: 10,
+    flexDirection: 'row',
+  },
+
+  counterTodo: {
+    color: 'white',
+    marginLeft: 4,
+    borderRadius: 999,
+    backgroundColor: '#333333',
+    paddingHorizontal: 8,
+    fontSize: 12,
+    paddingVertical: 2,
   },
 
   textFinish: {

@@ -5,7 +5,7 @@ type TodoProps = {
   completed: boolean;
 };
 export function useHomeHook() {
-  const [todo, setTodo] = useState<string>();
+  const [todo, setTodo] = useState<string>('');
   const [listTodo, setListTodo] = useState<TodoProps[]>([]);
 
   const handleCreatedTodo = (todotext: string) => {
@@ -15,7 +15,7 @@ export function useHomeHook() {
     };
 
     setListTodo([...listTodo, todoCreated]);
-    setTodo(undefined);
+    setTodo('');
   };
 
   return {
