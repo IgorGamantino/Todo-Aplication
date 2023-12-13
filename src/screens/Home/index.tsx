@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Logo from '../../assets/Logo.svg';
 import Plus from '../../assets/plus.svg';
+import Trash from '../../assets/trash.svg';
 import {useHomeHook} from './useHomeHook';
 import {Check} from '../../components/check';
 export function Home() {
@@ -18,6 +19,7 @@ export function Home() {
     listTodo,
     handleCompletedTask,
     counterTodoCompleted,
+    handleDeleteTodo,
   } = useHomeHook();
 
   return (
@@ -51,9 +53,9 @@ export function Home() {
         </View>
       </View>
 
-      <View>
+      <View style={styles.wrapperListTodo}>
         {listTodo.map(todo => (
-          <View style={styles.wrapperCounter}>
+          <View style={[styles.wrapperCounter, styles.containerTodo]}>
             <Check
               isChecked={todo.completed}
               onPress={() => handleCompletedTask(todo.id)}
@@ -61,6 +63,12 @@ export function Home() {
             <Text style={styles.textTodo} key={todo.id}>
               {todo.title}
             </Text>
+
+            <TouchableOpacity
+              style={styles.trash}
+              onPress={() => handleDeleteTodo(todo.id)}>
+              <Trash />
+            </TouchableOpacity>
           </View>
         ))}
       </View>
@@ -112,8 +120,7 @@ const styles = StyleSheet.create({
   wrapperText: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 24,
-    paddingLeft: 24,
+    paddingHorizontal: 24,
 
     paddingBottom: 20,
     borderBottomWidth: 1,
@@ -124,6 +131,17 @@ const styles = StyleSheet.create({
     color: '#4EA8DE',
     fontSize: 14,
     fontWeight: '700',
+  },
+
+  containerTodo: {
+    height: 64,
+
+    width: '100%',
+    borderRadius: 8,
+    backgroundColor: '#262626',
+    marginBottom: 8,
+    alignItems: 'center',
+    padding: 12,
   },
 
   wrapperCounter: {
@@ -141,6 +159,13 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
 
+  wrapperListTodo: {
+    width: '100%',
+    paddingHorizontal: 24,
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+
   textFinish: {
     color: '#8284FA',
     fontSize: 14,
@@ -149,5 +174,12 @@ const styles = StyleSheet.create({
 
   textTodo: {
     color: '#FFF',
+    marginLeft: 8,
+    fontSize: 15,
+  },
+
+  trash: {
+    position: 'absolute',
+    right: 16,
   },
 });

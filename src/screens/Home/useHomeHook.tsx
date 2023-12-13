@@ -29,6 +29,12 @@ export function useHomeHook() {
     }
   };
 
+  const handleDeleteTodo = (id: number) => {
+    const findTodo = listTodo.filter(todo => todo.id !== id);
+
+    setListTodo([...findTodo]);
+  };
+
   const counterTodoCompleted = listTodo.filter(todo => todo.completed).length;
 
   return {
@@ -39,5 +45,6 @@ export function useHomeHook() {
     setListTodo,
     handleCompletedTask,
     counterTodoCompleted,
+    handleDeleteTodo,
   };
 }
