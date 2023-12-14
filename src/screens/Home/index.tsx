@@ -62,7 +62,16 @@ export function Home() {
               isChecked={todo.completed}
               onPress={() => handleCompletedTask(todo.id)}
             />
-            <Text style={styles.textTodo} key={todo.id}>
+            <Text
+              style={[
+                styles.textTodo,
+                // eslint-disable-next-line react-native/no-inline-styles
+                {
+                  textDecorationLine: todo.completed ? 'line-through' : 'none',
+                  opacity: todo.completed ? 0.5 : 1,
+                },
+              ]}
+              key={todo.id}>
               {todo.title}
             </Text>
 
@@ -126,6 +135,7 @@ const styles = StyleSheet.create({
 
     paddingBottom: 20,
     borderBottomWidth: 1,
+    marginBottom: 10,
     borderColor: '#333',
   },
 
