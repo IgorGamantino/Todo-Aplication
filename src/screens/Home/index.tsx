@@ -55,7 +55,9 @@ export function Home() {
 
       <View style={styles.wrapperListTodo}>
         {listTodo.map(todo => (
-          <View style={[styles.wrapperCounter, styles.containerTodo]}>
+          <View
+            style={[styles.wrapperCounter, styles.containerTodo]}
+            key={todo.id}>
             <Check
               isChecked={todo.completed}
               onPress={() => handleCompletedTask(todo.id)}
